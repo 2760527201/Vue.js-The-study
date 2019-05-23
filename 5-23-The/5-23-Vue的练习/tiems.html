@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ti}}
+    </div>
+</body>
+</html>
+<script>
+
+    new  Vue({
+        el : "#app",
+        data : {
+            ti : new Date(),
+            timers : null
+        },
+        //把元素挂载vue实例上
+        mounted(){
+            var that = this;
+            this.timers = setInterval(function () {
+                that.ti = new Date();
+            },1000)
+        },
+        //实例销毁前调用
+        beforeDestroy(){
+            clearInterval(this.timers)
+        }
+    })
+
+</script>

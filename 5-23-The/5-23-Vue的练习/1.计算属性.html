@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="jian" :disabled="flag">-</button>
+        <input type="text" v-model="package1[0].count">
+        <button @click="jia" :disabled="flags">+</button>
+        <p>价格：{{prices}}</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            flag : false,
+            flags : false,
+            package1 : [
+                {
+                    name : "vivo",
+                    price : 2399,
+                    count : 2
+                },
+                {
+                    name :　"huawei",
+                    price : 3699,
+                    count : 1
+                }
+            ],
+            package2 : [
+                {
+                    name : "apple",
+                    price : 3,
+                    count : 8
+                },
+                {
+                    name :　"bananan",
+                    price : 9,
+                    count : 10
+                }
+            ],
+        },
+        computed : {
+            prices : function () {
+                var prices = 0;
+                for (var i = 0; i<this.package1.length;i++){
+                    prices += this.package1[i].price * this.package1[i].count;
+                };
+                for (var i = 0; i<this.package2.length;i++){
+                    prices += this.package2[i].price * this.package2[i].count;
+                }
+                return prices;
+            }
+        },
+        methods : {
+            jian : function () {
+                this.package1[0].count--;
+                if (this.package1[0].count <= 0){
+                    this.flag = true;
+
+                }
+                this.flags = false;
+            },
+            jia : function () {
+                this.package1[0].count++;
+                if (this.package1[0].count >= 99){
+                    this.flags = true;
+
+                }
+                this.flag = false;
+            }
+        }
+    })
+
+</script>

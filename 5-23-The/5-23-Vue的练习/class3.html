@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .box{
+            color: purple;
+        }
+        .active{
+            padding: 5px;
+            border:1px solid #f60;
+            text-align: center;
+        }
+        .error{
+            padding: 5px;
+            border:1px solid yellow;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <button @click="isA = !isA">click</button>
+        <p class="box" :class="aclass">{{text}}</p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el : "#app",
+        data : {
+            text : "hello word!!!",
+            isA : true,
+            isE : false
+        },
+        computed : {
+            aclass : function () {
+                return{
+                    active : this.isA && !this.isE,
+                    error : !this.isA && !this.isE
+                }
+            }
+        }
+    })
+
+
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .box{
+            color: purple;
+        }
+        .active{
+            padding: 5px;
+            border:1px solid #f60;
+            text-align: center;
+        }
+        .error{
+            padding: 5px;
+            border:1px solid yellow;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p :class="{active : flag}">{{aaa}}</p>
+        <input type="text" v-model="aaa">
+        <button @click="{flag = !flag}">{{text}}</button>
+        <p class="box" :class="{active : isActive, error : isError}">{{text}}</p>
+        <button @click="changeclass">{{text}}</button>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el : "#app",
+        data : {
+            aaa : "123",
+            active : "active",
+            flag : true,
+            text : "点击",
+            isActive : true,
+            isError : false
+        },
+        methods : {
+            changeclass(){
+                if (this.isActive == true || this.isError == false){
+                    this.isActive = false;
+                    this.isError = true
+                } else{
+                    this.isActive = true;
+                    this.isError = false
+                }
+
+            }
+        }
+    })
+</script>

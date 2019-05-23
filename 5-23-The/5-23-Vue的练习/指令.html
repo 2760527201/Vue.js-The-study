@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{sj | change}}
+    </div>
+</body>
+</html>
+<script>
+    function  zero(num) {
+        if (num < 10){
+            return "0" + num
+        } else{
+            return "" + num
+        }
+    }
+    new Vue({
+        el : "#app",
+        data : {
+            sj : new Date(),
+            timer : null
+        },
+        filters : {
+            change(value){
+                console.log(value)
+                //年
+                var year = zero(value.getFullYear());
+                // 月
+                var month = zero(value.getMonth() + 1);
+                // 日
+                var day = zero(value.getDate());
+                // 小时
+                var hours = zero(value.getHours());
+                // 分钟
+                var minutes = zero(value.getMinutes());
+                // 秒
+                var seconds = zero(value.getSeconds());
+                return year + "/" + month + "/" + day + "   " + hours + ":" + minutes + ":" + seconds;
+            }
+        },
+        mounted(){
+            var that = this;
+            this.timer = setInterval(function () {
+                that.sj =  new Date()
+            },1000)
+        },
+        beforeDestroy() {
+            if (this.sj){
+                clearInterval(this.timer)
+            }
+        }
+    })
+</script>

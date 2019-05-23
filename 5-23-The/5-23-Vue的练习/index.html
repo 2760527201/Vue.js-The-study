@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>-->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="odiv">
+        <input type="text" v-on:input="change">
+        <p>{{name}}</p>
+    </div>
+</body>
+</html>
+
+<script>
+
+    new Vue({
+        el : "#odiv",
+        data : {
+            name : "jacck"
+        },
+        methods : {
+            change : function(e){
+                this.name = e.target.value;  //获取目标元素的值
+            }
+        }
+    })
+
+</script>
