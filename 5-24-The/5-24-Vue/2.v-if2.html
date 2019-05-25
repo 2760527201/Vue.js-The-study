@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        p{
+            width: 150px;
+            height: 150px;
+            margin: 20px;
+            background: red;
+            text-align: center;
+            line-height: 150px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <template v-if="status.length == 1">
+            <label for="">姓名:</label>
+            <input type="text" placeholder="请输入姓名" key="name">
+        </template>
+        <template v-else-if="status.length == 2">
+            <label for="">邮箱:</label>
+            <input type="text" placeholder="请输入邮箱" key="email">
+        </template>
+        <template v-else>
+            <label for="">年龄:</label>
+            <input type="text" placeholder="请输入年龄" key="age">
+        </template>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            status : "123"
+        }
+    })
+
+</script>

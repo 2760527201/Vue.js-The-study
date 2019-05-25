@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <script src="js/vue.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        [v-cloak]{display: none;}
+        #app{width: 1200px;height: auto;margin: 0 auto;text-align: center;}
+        #app table{margin: auto;margin-top: 20px;}
+        #app table tr th{padding: 10px;width: 100px;}
+        #app table tr td{padding: 5px;}
+        #app .empty{margin-top: 20px;}
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <template v-if="array.length">
+        <h2>购物车</h2>
+        <table border="1" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>商品编号</th>
+                <th>商品名称</th>
+                <th>商品单价</th>
+                <th>购买数量</th>
+<!--                <th>-->
+<!--                    全选操作-->
+<!--                    <input type="checkbox">-->
+<!--                </th>-->
+                <th>移除操作</th>
+            </tr>
+            <tr v-for="(item,index) in array">
+                <td>{{index + 1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td >
+                    <button @click="jian(index)" :disabled="item.content === 1"> - </button>
+                    {{item.content}}
+                    <button @click="jia(index)" :disabled="item.content === 9"> + </button>
+                </td>
+<!--                <td>-->
+<!--                    选中-->
+<!--                    <input type="checkbox">-->
+<!--                </td>-->
+                <td>
+                    <button class="deletes" @click="del(index)">移除</button>
+                </td>
+            </tr>
+        </table>
+        <div>总价： <span>￥ {{prices}}</span></div>
+        </template>
+        <div class="empty" v-else>
+            <button>添加商品</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el : "#app",
+        data : {
+            array : [
+                {name: "苹果",price:"2",content:1},
+                {name: "香蕉",price:"5",content:5},
+                {name: "橘子",price:"8",content:9}
+            ],
+            pricesd : ""
+        },
+        computed: {
+            prices : function () {
+                var pricesd = 0;
+                for (var i = 0; i<this.array.length;i++){
+                    pricesd += this.array[i].price * this.array[i].content
+                }
+                return pricesd;
+            }
+        },
+        methods : {
+            jian : function (index) {
+                if (this.array[index].content === 1){
+                    return;
+                }else{
+                    this.array[index].content--;
+                }
+            },
+            jia : function (index) {
+                if (this.array[index].content === 9){
+                    return;
+                } else{
+                    this.array[index].content++;
+                }
+            },
+            del : function (index) {
+                this.array.splice(index,1);
+            }
+        }
+    })
+</script>

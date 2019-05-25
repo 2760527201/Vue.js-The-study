@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>点击的次数为：{{counter}}</p>
+
+        <button @click="counter++">添加</button>
+        <button @click="add">添加2</button>
+        <button @click="counter--">减</button>
+    </div>
+</body>
+</html>
+<script>
+
+    var app = new Vue({
+        el : "#app",
+        data : {
+            counter : 0
+        },
+        methods : {
+            add : function (e) {
+                console.log(e)
+                this.counter++;
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a href="https://www.baidu.com" @click="test('hello',$event)">百度</a>
+        <a href="https://www.baidu.com" @click.prevent="text('world')">百度</a>
+    </div>
+</body>
+</html>
+<script>
+
+    var app = new Vue({
+        el : "#app",
+        data : {
+            counter : 0
+        },
+        methods : {
+            test : function (text,enevt) {
+                enevt.preventDefault()
+                alert(text)
+            },
+            text : function (text) {
+                alert(text)
+            }
+        }
+    })
+
+</script>
