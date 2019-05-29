@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <p>总数：{{text}}</p>
+
+        <ccc v-model="text"></ccc>
+    </div>
+</body>
+</html>
+<script>
+
+
+    var ccc = {
+        template : "<div> <button @click='handleClick'>+1</button> </div>",
+        data : function () {
+            return {
+                counter : 0
+            }
+        },
+        methods : {
+            handleClick : function () {
+                this.counter++;
+                this.$emit("input",this.counter)
+            }
+        }
+    }
+
+    new Vue({
+        el : "#app",
+        data : {
+            text : 0
+        },
+        components : {
+            ccc
+        }
+    })
+
+</script>

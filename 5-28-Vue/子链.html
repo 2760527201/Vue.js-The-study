@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="changeChild">改变子组件的数据</button>
+        {{message}}
+        <my-main ref="child"></my-main>
+    </div>
+</body>
+</html>
+<script>
+
+    var myMain = {
+        template : "<div> <button @click='change'>改变父组件的数据</button> {{message}}</div>",
+        data : function () {
+            return {
+                message : "这是子元素传给父元素"
+            }
+        },
+        methods : {
+            change : function () {
+                this.$parent.message = this.message;
+            }
+        }
+    }
+
+    new Vue({
+        el : "#app",
+        data : {
+            message : ""
+        },
+        components : {
+            myMain
+        },
+        methods : {
+            changeChild : function () {
+                var fy =   this.$refs.child.message = "这是父元素改变子元素";
+                console.log(fy)
+            }
+        }
+    })
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in arry">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+
+    // var ccc = {
+    //
+    // }
+
+
+    new Vue({
+        el : "#app",
+        data : {
+            message : "",
+            arry : {
+                name : "aaa",
+                age : 20,
+                axt : {
+                    name: "vvv",
+                    age: 20
+                }
+            }
+        },
+        // component : {
+        //     ccc
+        // }
+    })
+
+</script>

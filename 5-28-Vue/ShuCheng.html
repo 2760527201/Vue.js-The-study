@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <ccc></ccc>
+
+    </div>
+</body>
+</html>
+<script>
+
+    var ccc = {
+        template : "<div> <button @click='gettag'>点击</button> {{cont}}</div>>",
+        data : function () {
+            return {
+                cont : 0
+            }
+        }
+    }
+
+    new Vue({
+        el : "#app",
+        data : {
+
+        },
+       components : {
+            ccc
+       }
+    })
+
+</script>

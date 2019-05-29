@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="password" v-model.trim="text">
+        <p>{{text}}hellp</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            text : ""
+        },
+        computed : {
+            value : function () {
+                return this.text;
+            }
+        }
+    })
+
+</script>

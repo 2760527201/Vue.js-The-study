@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分类</title>
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/iconfont1.css">
+    <link rel="stylesheet" href="css/iconfont2.css">
+    <link rel="stylesheet" href="css/iconfont3.css">
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <style>
+        body {
+            background: #fff;
+        }
+
+        .title {
+            background: #26a2ff;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+        }
+
+        .icon-fenlei:before {
+            color: #929292;
+        }
+
+        #warp {
+            width: 100%;
+            padding: 2.2rem 0 2.2rem 0;
+        }
+
+        h3 {
+            clear: both;
+            width: 90%;
+            margin: 0 auto;
+            border-bottom: .01rem solid #eee;
+            margin-bottom: .5rem;
+        }
+
+        ul {
+            width: 90%;
+            height: auto;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+            float: left;
+            width: 33%;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        ul li span{
+            font-weight: normal;
+            color: #929292;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 标题栏 -->
+    <header class="bar bar-nav">
+        <h1 class="title">分类</h1>
+    </header>
+    <!-- 身体 -->
+    <div id="warp">
+        <h3>男生</h3>
+        <ul>
+            <!-- <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li> -->
+        </ul>
+        <h3>女生</h3>
+        <ul>
+            <!-- <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li>
+            <li>哈哈
+                <br>
+                <span>ee</span>
+            </li> -->
+        </ul>
+    </div>
+    <!-- 工具栏 -->
+    <nav class="bar bar-tab">
+        <a class="tab-item external " href="#">
+            <span class="icon iconfont icon-shuji"></span>
+            <span class="tab-label">书架</span>
+        </a>
+        <a class="tab-item external active" href="#">
+            <span class="icon iconfont icon-fenlei"></span>
+            <span class="tab-label">分类</span>
+        </a>
+        <a class="tab-item external" href="#">
+            <span class="icon iconfont icon-paixing"></span>
+            <span class="tab-label">排行</span>
+        </a>
+        <a class="tab-item external" href="#">
+            <span class="icon iconfont icon-search-1-copy"></span>
+            <span class="tab-label">搜索</span>
+        </a>
+    </nav>
+</body>
+
+</html>
+<script src="js/ajax.js"></script>
+<script>
+    var aa = document.getElementsByTagName("a")
+    // console.log(aa)
+    var baseURL = "http://127.0.0.1:8000";
+    var aUl = document.getElementsByTagName("ul");
+    ajax({
+        url : baseURL + "/cats/lv2/statistics",
+        method : "get",
+        data : {},
+        success : function(response){
+            console.log(JSON.parse(response))
+            var data = JSON.parse(response);
+            for(var i =0; i < data.male.length; i++){
+                var li = document.createElement("li");
+                li.innerHTML = data.male[i].name;
+                var br = document.createElement("br");
+                var span = document.createElement("span");
+                span.innerHTML = data.male[i].bookCount;
+                aUl[0].appendChild(li);
+                li.appendChild(br);
+                li.appendChild(span);
+            }
+            for(var i =0; i < data.female.length; i++){
+                var li = document.createElement("li");
+                li.innerHTML = data.female[i].name;
+                var br = document.createElement("br");
+                var span = document.createElement("span");
+                span.innerHTML = data.female[i].bookCount;
+                aUl[1].appendChild(li);
+                li.appendChild(br);
+                li.appendChild(span);
+            }
+            //事件委托Event对象提供了一个属性叫target，可以返回事件的目标节点
+            function getTarget(e){
+                var e = e || window.event;
+                if(e.target){
+                    return e.target;
+                }else{
+                    return e.srcElement;
+                }
+            }
+            var oUl = document.getElementsByTagName("ul")[0];
+            oUl.onmouseover = function(){
+                var elements = getTarget(event)
+                if(elements.nodeName.toLowerCase = "li"){
+                    // console.log(elements.innerText)
+                    localStorage.setItem("bookname",elements.innerHTML);
+                }
+            }
+        },
+        async : true
+    })
+    //点击a标签跳转
+    for(var i =0; i < aa.length; i++){
+        aa[i].index = i;
+        // console.log(this.index)
+        aa[i].onclick = function(){
+           if(this.index == 0){
+                location.href = "bookrack.html"
+           }else if(this.index == 1){
+                location.href = "classify.html"
+           }else if(this.index == 2){
+                location.href = "ranking.html"
+           }else{
+                location.href = "search.html"
+           }
+        }
+    }
+  
+    
+</script>

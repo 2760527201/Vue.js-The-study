@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <my-main></my-main>
+    </div>
+</body>
+</html>
+<script>
+    var myMain = {
+        template : "<div> <button @click='change'>改变父组件的数据</button> </div>",
+        data : function () {
+            return {
+                message : "这其实是子数据"
+            }
+        },
+        methods : {
+            change : function () {
+                this.$parent.message = this.message;
+            }
+        }
+    }
+
+    new Vue({
+        el : "#app",
+        data : {
+            message : ""
+        },
+        components : {
+            myMain
+        }
+    })
+
+</script>
