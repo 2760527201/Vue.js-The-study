@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-dir:text="message"></div>
+        <div v-dir:dtext="msg"></div>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            message : "这是1号",
+            msg : "这是二号"
+        },
+        directives : {
+            dir : {
+                bind : function (el,binding,vnode) {
+                    if (binding.arg == "text"){
+                        el.innerHTML = binding.value
+                    }else if (binding.arg == "dtext"){
+                        el.innerHTML = binding.value
+                    }else{
+                        el.innerHTML = "这都不是"
+                    }
+                }
+            }
+        }
+    })
+
+</script>

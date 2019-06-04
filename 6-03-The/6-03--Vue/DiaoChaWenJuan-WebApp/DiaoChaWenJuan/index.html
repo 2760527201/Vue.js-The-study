@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><!--强制让文档与设备的宽度保持1：1-->
+    <!--注意：实际测试中发现，HTC G7自身系统浏览器不支持这一条规则，能够对页面进行放大，一旦放大响应的box也随之放大，导致俄页面出现错乱问题，解决方法：定义页面的最小宽度 min-width,body{min-width: 320px;}-->
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对web app程序的支持-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--在web app应用下状态条（屏幕顶部条）的颜色-->
+    <meta content="telephone=no" name="format-detection" /><!--则手机号码不被显示为拨号链接-->
+    <title>问卷调查</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+  </body>
+</html>
